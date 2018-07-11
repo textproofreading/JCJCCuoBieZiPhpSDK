@@ -1,10 +1,14 @@
 # JCJCCuoBieZiPhpSDK
 > JCJC chinese spellchecker  CuoBieZi Php SDK
 
-## 安装依赖
+## 安装
+
+> Composer repo 待定
 
 ```
-composer require guzzlehttp/guzzle
+git clone https://github.com/textproofreading/JCJCCuoBieZiPhpSDK.git
+
+composer install
 ```
 
 ## 用法
@@ -13,18 +17,28 @@ composer require guzzlehttp/guzzle
 ```php
 require 'vendor/autoload.php';
 
-$client = new GuzzleHttp\Client;
+$content = '腾讯今年中国人民共和国下半年上世纪将在微信账户钱包帐户的“九宫格”中开设快速的笑着保险入口。';
 
-$response = $client->post('http://api.cuobiezi.net/spellcheck/json_check/json_phrase', [
-    'json' => [
-        'content' => '腾讯今年中国人民共和国下半年上世纪将在微信账户钱包帐户的“九宫格”中开设快速的笑着保险入口。',
-        'mode' => 'advanced',
-        'username' => 'tester', //用户名
-        'biz_type' => 'show',
-    ]
-]);
+$config = [
+    'mode' => 'advanced',
+    'username' => 'tester',
+    'biz_type' => 'show',
+];
 
-$result = json_decode($response->getBody()->getContents());
+$checker = new JcJcCuoBieZi\Checker($config);
+
+// 使用全局设置
+$result = $checker->check($content);
 
 print_r($result);
+
+// 使用局部设置, 局部设置会覆盖全局设置
+$result = $checker->check($content, [
+    'username' => 'vip',
+    'biz_type' => 'show',
+    'is_return_sentence' => true,
+]);
+
+print_r($result);
+
 ```
