@@ -1,16 +1,5 @@
-# JCJCCuoBieZiPhpSDK
-> JCJC chinese spellchecker  CuoBieZi Php SDK
+<?php
 
-## 安装依赖
-
-```
-composer require guzzlehttp/guzzle
-```
-
-## 用法
-
-
-```php
 require 'vendor/autoload.php';
 
 $client = new GuzzleHttp\Client;
@@ -19,7 +8,7 @@ $response = $client->post('http://api.cuobiezi.net/spellcheck/json_check/json_ph
     'json' => [
         'content' => '腾讯今年中国人民共和国下半年上世纪将在微信账户钱包帐户的“九宫格”中开设快速的笑着保险入口。',
         'mode' => 'advanced',
-        'username' => 'tester', //用户名
+        'username' => 'tester',
         'biz_type' => 'show',
     ]
 ]);
@@ -27,4 +16,3 @@ $response = $client->post('http://api.cuobiezi.net/spellcheck/json_check/json_ph
 $result = json_decode($response->getBody()->getContents());
 
 print_r($result);
-```
