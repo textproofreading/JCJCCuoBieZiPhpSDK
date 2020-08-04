@@ -8,7 +8,16 @@
 ```
 git clone https://github.com/textproofreading/JCJCCuoBieZiPhpSDK.git
 
+HTTP 请求的部分使用了：composer / guzzlehttp
+
+参考文档：
+http://docs.guzzlephp.org/en/stable/overview.html
+
 composer install
+
+composer require guzzlehttp/guzzle:^7.0
+
+
 ```
 
 ## 用法
